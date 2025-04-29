@@ -7,7 +7,7 @@ public class BibliotecaFactoryTest {
     @Test
     void deveRetornarExcecaoParaOpcaoInexistente() {
         try {
-            IBiblioteca opcao = BibliotecaFactory.obterOpcoes("Doar");
+            IBiblioteca opcao = BibliotecaFactory.getInstance().obterOpcoes("Emprestar");
             fail();
         } catch (IllegalArgumentException e) {
             assertEquals("Opcao inexistente", e.getMessage());

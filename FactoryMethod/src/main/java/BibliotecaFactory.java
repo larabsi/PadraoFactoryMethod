@@ -1,16 +1,26 @@
 public class BibliotecaFactory {
-    public static IBiblioteca obterOpcoes(String opcoes) {
-        Class classe = null;
-        Object objeto = null;
-        try {
-            classe = Class.forName("padroescriacao.factorymethod.Opcoes" + opcoes);
-            objeto = classe.newInstance();
-        } catch (Exception ex) {
-            throw new IllegalArgumentException("Opcao inexistente");
+    public static BibliotecaFactory instance;
+
+    private BibliotecaFactory() {
+    }
+
+    public static BibliotecaFactory getInstance() {
+        if (instance == null) {
+            instance = new BibliotecaFactory();
         }
-        if (!(objeto instanceof IBiblioteca)) {
-            throw new IllegalArgumentException("Opcao inválida");
+
+        return instance;
+    }
+
+    public IBiblioteca obterOpcoes (String opcoes) {
+        if ("Renovar".equalsIgnoreCase(opcoes)) {
+            return new BibliotecaRenovar();
+        } else if ("Alugar".equalsIgnoreCase(opcoes)) {
+            return new BibliotecaAlugar();
+        } else if ("Devolver".equalsIgnoreCase(opcoes)){
+            return new BibliotecaDevolver();
+        } else {
+            throw new IllegalArgumentException("Tipo de notificação desconhecido: " + opcoes);
         }
-        return (IBiblioteca) objeto;
     }
 }
