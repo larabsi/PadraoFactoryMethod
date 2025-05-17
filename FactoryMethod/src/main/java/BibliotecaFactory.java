@@ -20,7 +20,7 @@ public class BibliotecaFactory {
         } else if ("Devolver".equalsIgnoreCase(opcoes)){
             return new BibliotecaDevolver();
         } else {
-            throw new IllegalArgumentException("Tipo de notificação desconhecido: " + opcoes);
+            throw new IllegalArgumentException("Opcao inexistente");
         }
     }
 }
